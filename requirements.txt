@@ -1,0 +1,8 @@
+langsmith==0.1.135
+langchain==0.3.3
+langchain-community==0.3.2
+langchain-core==0.3.15
+langchain-ollama==0.2.0
+langchain-openai==0.2.5
+langchain-text-splitters==0.3.0
+fastapi==0.115.2
