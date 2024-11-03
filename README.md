@@ -6,7 +6,6 @@
 
 
 ## 使用 LangServe 提供服务
-
 ```sh
 pip install "langserve[all]"
 ```

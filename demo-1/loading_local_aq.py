@@ -26,10 +26,14 @@ model_name = "llama3"
 temperature = 0  # 可调整的参数
 llm_model = OllamaLLM(model=model_name, temperature=temperature)
 
-qa_chain = RetrievalQA.from_chain_type(llm_model, chain_type="stuff", retriever=vector_store.as_retriever())
+qa_chain = RetrievalQA.from_chain_type(
+    llm_model, 
+    chain_type="stuff",
+    retriever=vector_store.as_retriever(search_kwargs={"k": 1}),  # 设置 n_results = 1
+)
 
 # 优化步骤 5: 提问
-query = "荒天帝的是谁?,使用中文回答  Think step-by-step"  # 替换为你想要询问的问题
+query = "荒天帝的名字是什么?,使用中文回答"  # 替换为你想要询问的问题
 response = qa_chain.invoke(query)
 
 # 检查响应并打印
