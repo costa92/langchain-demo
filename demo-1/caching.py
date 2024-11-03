@@ -4,7 +4,7 @@ from langchain_ollama import OllamaLLM
 from langchain_community.cache import InMemoryCache
 
 # 初始化LLM模型和缓存
-llm = OllamaLLM(model="llama3:8b", temperature=0)
+llm = OllamaLLM(model="llama3", temperature=0)
 set_llm_cache(InMemoryCache())
 
 # 测试缓存效果
