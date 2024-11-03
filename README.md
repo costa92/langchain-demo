@@ -31,3 +31,8 @@ pip install "unstructured[local-inference]"
 
 [爱鼓捣-blog](https://techdiylife.github.io/blog/topic.html?category2=t07&blogid=0043)
 [langchain 中文](http://python.langchain.com.cn/)
+
+
+## 许可证
+
+本仓库的代码和文档遵循 [MIT License](LICENSE) 许可证。
