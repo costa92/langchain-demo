@@ -20,7 +20,7 @@ split_documents = text_splitter.split_documents(document)
 print(f'documents:{len(split_documents)}')
 
 # 加载 llm 模型
-llm = OllamaLLM(model="llama3", temperature=0)
+llm = OllamaLLM(model="llama3:8b", temperature=0)
 
 # 创建总结链
 chain = load_summarize_chain(llm, chain_type="refine", verbose=True)
