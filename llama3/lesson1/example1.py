@@ -30,7 +30,7 @@ math_tools = [calculate_expression]
 
 # Initialize LLM (Large Language Model)
 try:
-    llm = OllamaLLM(model="llama3")
+    llm = OllamaLLM(model="llama3:8b")
     # Test LLM to ensure it's functioning
     print(f"LLM initialization test: {llm.invoke('Hello!')}")
 except Exception as e:
@@ -72,12 +72,14 @@ react_prompt = PromptTemplate(
         "Observation: the result of the action\n"
         "... (this Thought/Action/Action Input/Observation can repeat N times)\n"
         "Thought: I now know the final answer\n"
-        "Final Answer: {input}\n\n"
+        "Final Answer: {input}\n\n"  # 修改输出格式
         "Begin!\n\n"
         "Question: {input}\n"
-        "Thought:{agent_scratchpad}"
+        "Thought: {agent_scratchpad} \n"
+        "Please return the calculation result directly without additional explanation."
     )
 )
+
 # Define agent
 agent = create_react_agent(
     tools=math_tools,
@@ -85,17 +87,19 @@ agent = create_react_agent(
     prompt=react_prompt
 )
 
+## With LangChain's AgentExecutor, you could configure an early_stopping_method to either return a string saying "Agent stopped due to iteration limit or time limit." ("force") or prompt the LLM a final time to respond ("generate").
 # Initialize AgentExecutor with optimized settings
 agent_executor = AgentExecutor(
     agent=agent,
     tools=math_tools,
     handle_parsing_errors=False,
-    max_iterations=10,  # Increased iterations to 10
-    max_execution_time=10,  # Increased execution time to 10 seconds per tool execution
-    max_time=300,  # Increased the total maximum time limit to 5 minutes (300 seconds)
-    verbose=True  # Enables detailed logging
+    allow_dangerous_code=True,
+    early_stopping_method="force",  # 保持为 "force"
+    max_iterations=5,  # 增加迭代次数
+    max_execution_time=30,  # 增加每个工具的执行时间
+    max_time=120,  # 增加总的最大时间限制
+    verbose=True  # 启用详细日志
 )
-
 
 # User's question
 user_question = "What is 2 * 4 ?"
@@ -118,3 +122,5 @@ try:
     print(f"Response: {response.get('output')}")
 except Exception as e:
     print(f"Execution error: {e}")
+
+

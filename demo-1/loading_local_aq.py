@@ -9,9 +9,10 @@ file_path = "data/完美世界.txt"  # 替换为你的 TXT 文件路径
 loader = TextLoader(file_path, encoding="gb18030")  # 确认文件编码
 documents = loader.load()
 
+model_name = "llama3:8b"
 # 优化步骤 2: 创建嵌入模型
 try:
-    embeddings_model = OllamaEmbeddings(model="llama3")  # 指定使用 llama3
+    embeddings_model = OllamaEmbeddings(model=model_name)  # 指定使用 llama3
 except Exception as e:
     print(f"加载嵌入模型时出错: {e}")
 
@@ -22,7 +23,7 @@ except Exception as e:
     print(f"创建向量存储时出错: {e}")
 
 # 优化步骤 4: 创建检索问答链
-model_name = "llama3"
+
 temperature = 0  # 可调整的参数
 llm_model = OllamaLLM(model=model_name, temperature=temperature)
 
