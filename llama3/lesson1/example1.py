@@ -58,6 +58,30 @@ from langchain.prompts import PromptTemplate
 #         "Thought:{agent_scratchpad}\n"  # 之前的思考过程
 #     )
 # )
+
+# 定义优化后的 PromptTemplate
+# react_prompt = PromptTemplate(
+#     input_variables=["input", "tools", "tool_names", "agent_scratchpad"],
+#     template=(
+#         "请回答以下问题。您可以使用以下工具:\n\n"
+#         "{tools}\n\n"
+#         "请使用以下格式:\n\n"
+#         "问题: 输入的问题\n"
+#         "思考: 您应始终考虑下一步该做什么\n"
+#         "行动: 应采取的行动，应为 [{tool_names}] 中的一个\n"
+#         "行动输入: 动作的输入\n"
+#         "观察: 动作的结果\n"
+#         "... (此思考/行动/行动输入/观察可以重复 N 次)\n"
+#         "思考: 我现在知道最终答案\n"
+#         "最终答案: {input}.\n\n"
+#         "开始!\n\n"
+#         "问题: {input}\n"
+#         "思考: {agent_scratchpad}"
+#         "请直接返回计算结果，不需额外说明。"
+#     )
+# )
+
+
 # 输出的：“The final answer is 8.”
 react_prompt = PromptTemplate(
     input_variables=["input", "tools", "tool_names", "agent_scratchpad"],
@@ -76,6 +100,7 @@ react_prompt = PromptTemplate(
         "Begin!\n\n"
         "Question: {input}\n"
         "Thought: {agent_scratchpad} \n"
+        #  输入内容 问题
         "Please return the calculation result directly without additional explanation."
     )
 )
@@ -102,7 +127,7 @@ agent_executor = AgentExecutor(
 )
 
 # User's question
-user_question = "What is 2 * 4 ?"
+user_question = "What is 3233 * 4556 ?"
 print(f"User Question: {user_question}")
 
 # Construct input data
