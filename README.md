@@ -31,6 +31,7 @@ pip install "unstructured[local-inference]"
 [爱鼓捣-blog](https://techdiylife.github.io/blog/topic.html?category2=t07&blogid=0043)
 [langchain 中文](http://python.langchain.com.cn/)
 [LangChain实战 | 3分钟学会SequentialChain传递多个参数](https://blog.csdn.net/sinat_29950703/article/details/139263894)
+[langchain学习之chain机制](https://blog.csdn.net/zc1226/article/details/140011057?spm=1001.2101.3001.6650.15&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15-140011057-blog-139263894.235%5Ev43%5Epc_blog_bottom_relevance_base9&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15-140011057-blog-139263894.235%5Ev43%5Epc_blog_bottom_relevance_base9&utm_relevant_index=18)
 
 
 ## 许可证
