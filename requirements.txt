@@ -8,3 +8,5 @@ langchain-text-splitters==0.3.0
 fastapi==0.115.2
 unstructured==0.16.4
 langchain-unstructured==0.1.5
+chromadb==0.5.13
+graphrag==0.1.1
