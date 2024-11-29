@@ -11,3 +11,4 @@ langchain-unstructured==0.1.5
 chromadb==0.5.13
 graphrag==0.1.1
 torch==2.4.1
+FlagEmbedding==1.2.11

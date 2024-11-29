@@ -42,8 +42,10 @@ documents = [
     }
 ]
 
+
+#  https://www.tizi365.com/topic/10092.html
 # 初始化BGE M3模型
-model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True)
+model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True,device='cpu',     normalize_embeddings=True,)
 
 # 将文档添加到向量存储中
 documentation_collection = chroma_client.get_or_create_collection(name="legal_docs")

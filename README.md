@@ -36,7 +36,7 @@ pip install "unstructured[local-inference]"
 
   GraphRAG技术：
     算法： 过层次聚类技术（如常用的 Leiden 算法）
-  
+
 
 2. 总结：
 1. 在信息检索和内容生成，不再依赖传统的向量数据库和文档分割技术已不够充分，而应当充分利用 LLaMA 3 的强大功能，以提升索引、检索和内容生成的智能化程度。
@@ -102,7 +102,7 @@ print(response.response)
 [LangChain实战 | 3分钟学会SequentialChain传递多个参数](https://blog.csdn.net/sinat_29950703/article/details/139263894)
 [langchain学习之chain机制](https://blog.csdn.net/zc1226/article/details/140011057?spm=1001.2101.3001.6650.15&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15-140011057-blog-139263894.235%5Ev43%5Epc_blog_bottom_relevance_base9&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15-140011057-blog-139263894.235%5Ev43%5Epc_blog_bottom_relevance_base9&utm_relevant_index=18)
 
-
+[OceanBase AI 动手实战营](https://gitee.com/oceanbase-devhub/ai-workshop-2024)
 
 
 ## 许可证
