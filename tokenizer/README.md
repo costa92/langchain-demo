@@ -120,6 +120,7 @@ if __name__ == '__main__':
 print(vocab)
 # {'low</w>': 5, 'low e r </w>': 2, 'newest</w>': 6, 'wi d est</w>': 3}
 ```
+
 注意，初始的 vocab 已经将单词拆分为字符序列，并用 ' ' 分隔。这个步骤被称作 pre-tokenization 。
 
 
@@ -156,7 +157,93 @@ GPT-2 提出了一个巧妙的解决方案:
 
 
 
+## Padding
+
+### 为什么使用 padding 
+
+在使用批量数据训练模型的时候，训练数据的长度并不总是相同，这会导致训练出问题。因为模型输入张量（tensor）需要有一个统一的形状，所以需要通过在较短的句子中添加一个特殊的填充标记（ padding token ） 来确保较短的序列将和批次中最长的序列或模型接受的最大长度相同。
+
+### padding配置策略
+
+padding参数控制文本填充的方式，它可以是布尔值或字符串：
+
+* True或longest：对批次中的所有序列进行填充，使它们的长度与批次中最长的序列一致（如果你只提供了单个序列，则不应用任何填充）。
+
+* max_length：将所有序列填充或截断到指定的max_length长度，或者如果没有提供max_length（即max_length=None），则填充到模型接受的最大长度。即使你只提供了单个序列，依然会应用填充。
+
+* False或 'do_not_pad'（默认） ：不进行任何填充。
+
+
+设置参数padding='max_length'并且 max_length=2， max_length 比批次中最短序列的长度还小：
+
+```python
+
+
+encoded_input = tokenizer(batch_sentences, padding='max_length', max_length=2)
+print(f'encoded_input的类型为：{type(encoded_input)}')
+print('输出encoded_input如下：')
+print(encoded_input)
+
+# tokens() 查看这个批次中第batch_index个文本字符串分词之后的原始tokens列表，你可以使用这个tokens方法来获取，这对于理解分词器如何将文本切分成tokens或者对分词器的输出进行调试非常有用。
+tokens1 = encoded_input.tokens()  # 默认是0
+tokens2 = encoded_input.tokens(1)
+tokens3 = encoded_input.tokens(2)
+print(f'第一个句子的tokens为：{tokens1}')
+print(f'第二个句子的tokens为：{tokens2}')
+print(f'第三个句子的tokens为：{tokens3}')
+
+
+
+# 输出encoded_input如下：
+# {'input_ids': [[3983, 1128, 911, 2086, 17496, 30], [8002, 944, 1744, 566, 8788, 911, 2086, 17496, 11, 77382, 13], [3838, 911, 11964, 724, 550, 30]], 'attention_mask': [[1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]]}
+# 第一个句子的tokens为：['But', 'Ġwhat', 'Ġabout', 'Ġsecond', 'Ġbreakfast', '?']
+# 第二个句子的tokens为：['Don', "'t", 'Ġthink', 'Ġhe', 'Ġknows', 'Ġabout', 'Ġsecond', 'Ġbreakfast', ',', 'ĠPip', '.']
+# 第三个句子的tokens为：['What', 'Ġabout', 'Ġelev', 'ens', 'ies', '?']
+
+
+```
+
+当设置padding='max_length' 时，对上面max_length 设置不同长度的情形总结：
+
+* 设置 max_length 比批次中最短序列的长度还小时，不会对序列进行填充，和 do_not_pad 策略一致。
+* 设置 max_length 比批次中最短序列的长度大，比最长序列小时，只会对小于max_length的序列进行填充。
+* 设置 max_length 比最长序列的长度大时，会将批次中所有的序列填充到 max_length 指定的长度。
+* 设置 max_length=None 或者不指定 max_length 时，会将批次中所有的序列填充到模型接受的最大长度。
+
+当设置 padding='do_not_pad' 或者 padding=False或者不设置 padding参数，则不会进行填充。
+
+
+##  Truncation 截断
+
+
+在使用tokenizer对文本数据进行处理时，截断（truncation）是一个重要的步骤，主要有以下几个原因：
+
+1. 模型输入长度限制
+- 大多数基于Transformer的模型(如BERT、GPT等)都有最大输入长度限制
+- 例如BERT通常限制为512个token
+- 超过长度限制的文本必须截断到模型可接受的长度
+
+2. 计算资源优化
+- 处理长序列需要更多计算资源和时间
+- 截断可以使文本长度一致或控制在合理范围内
+- 有助于优化计算资源使用、加快训练和推理
+- 控制内存使用
+
+3. 提升模型表现
+- 并非所有文本信息对特定任务都同等重要
+- 截断可以帮助模型聚焦于关键信息
+- 例如在情感分析中,文本开头和结尾可能更重要
+- 在某些情况下可以提高模型性能
+
+4. 数据一致性
+- 训练和推理阶段需要保持输入数据的一致性
+- 截断可以使所有文本输入长度相同
+- 有助于维持模型的稳定性和准确性
+
 
 ## 参考文档
 
+
+
 [Tokenizer](https://www.huaxiaozhuan.com/%E5%B7%A5%E5%85%B7/huggingface_transformer/chapters/1_tokenizer.html)
+[Tokenizer 使用介绍](https://juejin.cn/post/7365704546100396084)
