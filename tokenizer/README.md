@@ -247,3 +247,5 @@ print(f'第三个句子的tokens为：{tokens3}')
 
 [Tokenizer](https://www.huaxiaozhuan.com/%E5%B7%A5%E5%85%B7/huggingface_transformer/chapters/1_tokenizer.html)
 [Tokenizer 使用介绍](https://juejin.cn/post/7365704546100396084)
+
+[huggingface transformers](https://huggingface.co/docs/transformers/main/zh/main_classes/tokenizer)
