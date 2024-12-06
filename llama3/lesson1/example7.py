@@ -106,6 +106,7 @@ action_re = re.compile(r'^Action:\s*(\w+)\s+(.*)$', re.IGNORECASE | re.MULTILINE
 
 
 
+model = "llama3:8b"
 # ChatBot implementation
 class ChatBot:
     def __init__(self, system=""):
@@ -115,7 +116,7 @@ class ChatBot:
         self.messages.append({"role": "user", "content": message})
         try:
             logger.debug(f"Sending message to model: {message}")
-            response = ollama.chat(model="llama3", messages=self.messages)
+            response = ollama.chat(model=model, messages=self.messages)
             content = response['message']['content'].splitlines()[0]  # Ensure only one line of response
             logger.debug(f"Model response: {content}")
             self.messages.append({"role": "assistant", "content": content})

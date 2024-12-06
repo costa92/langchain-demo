@@ -2,7 +2,8 @@ import ollama
 import re 
 from collections import Counter
 
-
+# model="x/llama3.2-vision:11b"
+model="llama3:8b"
 # 设定生成文本的函数
 def generate_text(prompt):
     # 使用 ollama 进行对话，要求使用中文回答，并明确指示上下文
@@ -10,7 +11,7 @@ def generate_text(prompt):
         {"role": "system", "content": "根据用户给出上下文提供一种可能解决问题的方案"},
         {"role": "user", "content": prompt}
     ]
-    response = ollama.chat(model="x/llama3.2-vision:11b", messages=messages)
+    response = ollama.chat(model=model, messages=messages)
     return response['message']['content']
 
 
