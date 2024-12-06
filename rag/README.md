@@ -35,3 +35,4 @@ RAG（检索增强生成）是一种结合信息检索与生成模型的技术�
 - [LangChain 中文文档](http://python.langchain.com.cn/)
 - [RAG技术架构与实现原理](https://cloud.tencent.com/developer/article/2436421)
 - [检索增强生成(RAG)技术方法流程最佳实践实验探索](https://www.53ai.com/news/RAG/2024072130482.html)
+- [RAG框架](https://www.53ai.com/news/RAG/2024062056319.html)
