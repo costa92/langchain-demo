@@ -103,7 +103,7 @@ print(response.response)
 [langchain学习之chain机制](https://blog.csdn.net/zc1226/article/details/140011057?spm=1001.2101.3001.6650.15&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15-140011057-blog-139263894.235%5Ev43%5Epc_blog_bottom_relevance_base9&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-15-140011057-blog-139263894.235%5Ev43%5Epc_blog_bottom_relevance_base9&utm_relevant_index=18)
 
 [OceanBase AI 动手实战营](https://gitee.com/oceanbase-devhub/ai-workshop-2024)
-
+[使用Streamlit、LangChain、Neo4j和GPT-4o构建GraphRAG实战讲解及开源实现](https://www.53ai.com/news/RAG/2024072167318.html)
 
 ## 许可证
 
