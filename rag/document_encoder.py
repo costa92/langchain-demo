@@ -2,8 +2,8 @@
 from transformers import BertModel, BertTokenizer
 
 
-
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+# 加载预训练的BERT模型和分词器，并设置clean_up_tokenization_spaces=False，以避免在分词过程中自动删除多余的空格。
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased',clean_up_tokenization_spaces=False)
 model = BertModel.from_pretrained('bert-base-uncased')
 
 
