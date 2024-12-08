@@ -7,6 +7,6 @@ model = BertModel.from_pretrained("bert-base-uncased")
 
 
 query = "What is the capital of France?"
-inputs = tokenizer(query, return_tensors="pt")
+inputs = tokenizer(query, return_tensors="pt", clean_up_tokenization_spaces=True)
 outputs = model(**inputs).last_hidden_state.mean(dim=1)
 print(outputs)
