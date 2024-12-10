@@ -6,7 +6,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_openai import ChatOpenAI
 from langchain_huggingface import HuggingFaceEmbeddings  # Updated import
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_core.output_parsers import StrOutputParser
+from langchain_core.output_parsers import StrOutputParser # 输出解析器
 from langchain_core.runnables import RunnablePassthrough
 
 # Load documents from the specified web path
@@ -48,12 +48,19 @@ embedding = HuggingFaceEmbeddings(
 )
 # Store documents and embeddings in local vector store
 vectorstore = Chroma.from_documents(documents=splits, embedding=embedding, persist_directory="db")
+
+# 检索器
 retriever = vectorstore.as_retriever()
 
 #### RETRIEVAL and GENERATION ####
 
 # Load prompt from hub
 prompt = hub.pull("rlm/rag-prompt")
+
+#  prompt 可以自定义提示词 使用 from langchain.prompts import ChatPromptTemplate
+#  prompt = ChatPromptTemplate.from_template(template)
+
+
 
 # Initialize the language model
 llm = ChatOpenAI(model="llama3:8b", api_key=embedding_api_key, base_url=base_url)
@@ -64,7 +71,7 @@ def format_docs(docs):
 
 # Create the retrieval-augmented generation chain
 rag_chain = (
-    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}  # 上下文信息
     | prompt
     | llm
     | StrOutputParser()
