@@ -50,7 +50,9 @@ embedding = HuggingFaceEmbeddings(
 vectorstore = Chroma.from_documents(documents=splits, embedding=embedding, persist_directory="db")
 
 # 检索器
-retriever = vectorstore.as_retriever()
+# retriever = vectorstore.as_retriever() 
+retriever = vectorstore.as_retriever(search_kwargs={"k": 1})
+
 
 #### RETRIEVAL and GENERATION ####
 
