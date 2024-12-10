@@ -12,8 +12,6 @@ base_url="https://api.siliconflow.cn/v1/"
 LANGCHAIN_ENDPOINT=os.environ['LANGCHAIN_ENDPOINT']
 LANGCHAIN_API_KEY=os.environ['LANGCHAIN_API_KEY']
 
-print(LANGCHAIN_API_KEY)
-print(LANGCHAIN_ENDPOINT)
 # Initialize the ChatOpenAI instance
 llm = ChatOpenAI(
   api_key=api_key,
