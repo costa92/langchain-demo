@@ -8,7 +8,7 @@ from langchain_huggingface import HuggingFaceEmbeddings  # Updated import
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.output_parsers import StrOutputParser # 输出解析器
 from langchain_core.runnables import RunnablePassthrough
-
+os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 # Load documents from the specified web path
 loader = WebBaseLoader(
     web_paths=("https://lilianweng.github.io/posts/2023-06-23-agent/",),
@@ -44,7 +44,7 @@ encode_kwargs = {'normalize_embeddings': False}
 embedding = HuggingFaceEmbeddings(
     model_name=model_name,
     model_kwargs=model_kwargs,
-    encode_kwargs=encode_kwargs
+    encode_kwargs=encode_kwargs,
 )
 # Store documents and embeddings in local vector store
 vectorstore = Chroma.from_documents(documents=splits, embedding=embedding, persist_directory="db")
@@ -63,9 +63,9 @@ prompt = hub.pull("rlm/rag-prompt")
 #  prompt = ChatPromptTemplate.from_template(template)
 
 
-
+model_name = "llama3"
 # Initialize the language model
-llm = ChatOpenAI(model="llama3:8b", api_key=embedding_api_key, base_url=base_url)
+llm = ChatOpenAI(model=model_name, api_key=embedding_api_key, base_url=base_url,temperature=0 )
 
 # Post-processing function to format documents
 def format_docs(docs):
