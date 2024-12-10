@@ -35,8 +35,12 @@ if not embedding_api_key:
     raise ValueError("OPENAI_API_KEY environment variable not set.")
 
 
+
+# 设置模型参数，指定设备为 CPU
 model_kwargs = {'device': 'cpu'}
+# 设置编码参数，禁用嵌入归一化
 encode_kwargs = {'normalize_embeddings': False}
+# 创建 HuggingFaceEmbeddings 实例，使用指定的模型和参数
 embedding = HuggingFaceEmbeddings(
     model_name=model_name,
     model_kwargs=model_kwargs,
@@ -67,6 +71,6 @@ rag_chain = (
 )
 
 # Invoke the chain with a question
-response = rag_chain.invoke("What is Task Decomposition?")
+response = rag_chain.invoke("What is Task Decomposition?，使用中文回答")
 if response:
     print(response)
