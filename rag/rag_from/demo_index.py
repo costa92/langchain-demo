@@ -1,44 +1,29 @@
 import os
-# import getpass
-import bs4
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
-from uuid import uuid4
-# unique_id = uuid4().hex[0:8]
-os.environ["USER_AGENT"] = "UserAgent"
-# os.environ['LANGCHAIN_TRACING_V2'] = 'true'
-# os.environ["LANGCHAIN_PROJECT"] = f"Tracing Walkthrough - {unique_id}"
-# os.environ['LANGCHAIN_ENDPOINT'] = 'https://api.smith.langchain.com'
-# # os.environ["LANGCHAIN_API_KEY"] = getpass.getpass("LANGCHAIN_API_KEY")
-# # os.environ["LANGCHAIN_API_KEY"] = os.getenv["LANGCHAIN_API_KEY"]
+from langchain_openai import ChatOpenAI
 
-api_key = os.getenv("LANGCHAIN_API_KEY")
-print(api_key)
-print(os.getenv("LANGCHAIN_TRACING_V2"))
-print(os.getenv("USER_AGENT"))
-print(os.getenv("LANGCHAIN_ENDPOINT"))
+from dotenv import find_dotenv, load_dotenv
+load_dotenv(find_dotenv())
 
-# load Document
 
-# Load Documents
-loader = WebBaseLoader(
-    web_paths=("https://lilianweng.github.io/posts/2023-06-23-agent/",),
-    bs_kwargs=dict(
-        parse_only=bs4.SoupStrainer(
-            class_=("post-content", "post-title", "post-header")
-        )
-    ),
+api_key =  os.getenv("OPENAI_API_KEY")
+base_url="https://api.siliconflow.cn/v1/"
+
+#设置langSmith的环境变量,是统计
+LANGCHAIN_TRACING_V2=os.environ['LANGCHAIN_TRACING_V2']
+LANGCHAIN_ENDPOINT=os.environ['LANGCHAIN_ENDPOINT']
+LANGCHAIN_API_KEY=os.environ['LANGCHAIN_API_KEY']
+
+print(LANGCHAIN_API_KEY)
+print(LANGCHAIN_ENDPOINT)
+# Initialize the ChatOpenAI instance
+llm = ChatOpenAI(
+  api_key=api_key,
+  base_url=base_url, 
+  model="Qwen/Qwen2.5-7B-Instruct",
 )
 
-documents = loader.load()
+# Invoke the model with a message
+# response = llm.invoke("Hello, world!")
+# print(response)
 
-# Split
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-splits = text_splitter.split_documents(documents)
-
-# Embed
-vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
-
-retriever = vectorstore.as_retriever()
+print("第一次对话:",llm.invoke("你是一只小狗,只会汪汪叫"),"\n\n第二次对话:",llm.invoke("你是一只小狗嘛"))
