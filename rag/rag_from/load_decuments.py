@@ -34,12 +34,13 @@ embedding_api_key = "ollama"
 if not embedding_api_key:
     raise ValueError("OPENAI_API_KEY environment variable not set.")
 
-
-
 # 设置模型参数，指定设备为 CPU
 model_kwargs = {'device': 'cpu'}
 # 设置编码参数，禁用嵌入归一化
-encode_kwargs = {'normalize_embeddings': False}
+encode_kwargs = {
+    'normalize_embeddings': False,
+    'clean_up_tokenization_spaces': False  # Explicitly set to avoid FutureWarning
+}
 # 创建 HuggingFaceEmbeddings 实例，使用指定的模型和参数
 embedding = HuggingFaceEmbeddings(
     model_name=model_name,
@@ -73,7 +74,7 @@ def format_docs(docs):
 
 # Create the retrieval-augmented generation chain
 rag_chain = (
-    {"context": retriever | format_docs, "question": RunnablePassthrough()}  # 上下文信息
+    {"context": retriever | format_docs, "question": RunnablePassthrough(),}  # 上下文信息
     | prompt
     | llm
     | StrOutputParser()
@@ -83,7 +84,3 @@ rag_chain = (
 response = rag_chain.invoke("What is Task Decomposition?，使用中文回答")
 if response:
     print(response)
-
-
-
-    
