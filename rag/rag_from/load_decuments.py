@@ -74,3 +74,7 @@ rag_chain = (
 response = rag_chain.invoke("What is Task Decomposition?，使用中文回答")
 if response:
     print(response)
+
+
+
+    
