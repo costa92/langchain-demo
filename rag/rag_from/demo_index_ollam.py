@@ -14,10 +14,9 @@ LANGCHAIN_API_KEY=os.environ['LANGCHAIN_API_KEY']
 
 # 初始化 ChatOpenAI 模型
 # chat = ChatOpenAI(model="llama3.2-vision:11b", api_key="ollama", base_url="http://localhost:11434/v1/")
-llm = ChatOpenAI(model="llama3:8b", api_key="ollama", base_url="http://localhost:11434/v1/")
+chat = ChatOpenAI(model="llama3:8b", api_key="ollama", base_url="http://localhost:11434/v1/")
 
-print("第一次对话:",llm.invoke("你是一只小狗,只会汪汪叫"),"\n\n第二次对话:",llm.invoke("你是一只小狗嘛"))
-
+# print("第一次对话:",chat.invoke("你是一只小狗,只会汪汪叫"),"\n\n第二次对话:",chat.invoke("你是一只小狗嘛"))
 
 # # 初始化对话记忆
 # if "memory" not in st.session_state:
