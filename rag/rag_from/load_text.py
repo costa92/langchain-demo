@@ -101,6 +101,29 @@ rag_chain = (
 # Start query & generate
 query = "浮云终日行 请把这首补全"
 
-response = rag_chain.invoke(query)
-if response:
-    print(response)
+# Ensure the invocation is within an async function
+async def generate_response():
+    response = await rag_chain.ainvoke(query)
+    if response:
+        print(response)
+import asyncio
+
+# Call the async function within an event loop
+asyncio.run(generate_response())
+
+# # 异步调用
+# await rag_chain.ainvoke({"topic": "bears"})
+
+# # 批量调用
+# chain.batch([{"topic": "bears"}, {"topic": "cats"}])
+
+# # 异步调用
+# await rag_chain.abatch([{"topic": "bears"}])
+
+# # 流式输出
+# for s in rag_chain.stream({"topic": "bears"}):
+#     print(s.content, end="", flush=True)
+
+# # 异步的流式输出
+# async for s in rag_chain.astream({"topic": "bears"}):
+#     print(s, end="", flush=True)
