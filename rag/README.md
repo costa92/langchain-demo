@@ -86,3 +86,4 @@ langchain serve
 - [读懂RAG这一篇就够了，万字详述RAG的5步流程和12个优化策略](https://juejin.cn/post/7329732000087572520)
 - [一文详看Langchain框架中的RAG多阶段优化策略：从问题转换到查询路由再到生成优化](https://mp.weixin.qq.com/s/pK2BRLrWpEKKIPFhUtGvcg)
 - [LangChain框架：Hub和LangSmith入门](https://blog.csdn.net/Wufjsjjx/article/details/140798687)
+- [大模型从入门到应用——LangChain：模型（Models）-[文本嵌入模型：Embaas、Fake Embeddings、Google Vertex AI PaLM等]](https://blog.csdn.net/hy592070616/article/details/131927016)

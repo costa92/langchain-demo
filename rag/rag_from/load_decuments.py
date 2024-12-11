@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import bs4
 from langchain import hub
 from langchain_community.document_loaders import WebBaseLoader
@@ -64,7 +66,7 @@ prompt = hub.pull("rlm/rag-prompt")
 #  prompt = ChatPromptTemplate.from_template(template)
 
 
-model_name = "llama3"
+model_name = "llama3:8b"
 # Initialize the language model
 llm = ChatOpenAI(model=model_name, api_key=embedding_api_key, base_url=base_url,temperature=0 )
 
