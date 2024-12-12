@@ -30,6 +30,15 @@ RAG（检索增强生成）是一种结合信息检索与生成模型的技术�
 ### 3. 向量数据库
 向量数据库用于存储和管理生成的文本向量，以便于快速检索。
 
+| 向量数据库 | URL | GitHub Star | Language |
+| --- | --- | --- | --- |
+| Chroma | https://github.com/chroma-core/chroma | 10.5k | Python |
+| Milvus | https://github.com/milvus-io/milvus | 10.5k | Go/Python/C++ |
+| Qdrant | https://github.com/qdrant/qdrant | 11.8k | Rust |
+| Typesense | https://github.com/typesense/typesense | 12.9k | C++ |
+| Weaviate | https://github.com/weaviate/weaviate | 11.8k | go |
+
+
 ### 4. 检索模块
 检索模块负责从知识库中提取与输入查询相关的信息。
 
