@@ -87,3 +87,9 @@ langchain serve
 - [一文详看Langchain框架中的RAG多阶段优化策略：从问题转换到查询路由再到生成优化](https://mp.weixin.qq.com/s/pK2BRLrWpEKKIPFhUtGvcg)
 - [LangChain框架：Hub和LangSmith入门](https://blog.csdn.net/Wufjsjjx/article/details/140798687)
 - [大模型从入门到应用——LangChain：模型（Models）-[文本嵌入模型：Embaas、Fake Embeddings、Google Vertex AI PaLM等]](https://blog.csdn.net/hy592070616/article/details/131927016)
+
+
+
+## 模型
+
+[CoROM文本向量-中文-通用领域-base](https://modelscope.cn/models/iic/nlp_corom_sentence-embedding_chinese-base/files)
