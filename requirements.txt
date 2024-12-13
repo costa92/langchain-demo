@@ -17,3 +17,4 @@ weaviate-client==3.26.7
 huggingface-hub==0.26.5
 torchaudio==2.5.1
 torchvision==0.20
+transformers==4.44.2
