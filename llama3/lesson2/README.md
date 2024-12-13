@@ -69,3 +69,4 @@ huggingface-cli download --repo-type dataset --resume-download [数据名称] --
 ## 文档
 
 - [推理pipeline](https://huggingface.co/docs/transformers/zh/pipeline_tutorial)
+- [torch 对应版本](https://pytorch.org/get-started/previous-versions/)
