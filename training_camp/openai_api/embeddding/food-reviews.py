@@ -63,3 +63,23 @@ client = OpenAI(api_key=api_key,base_url="https://api.agicto.cn/v1")
 # Ref：https://community.openai.com/t/embeddings-api-documentation-needs-to-updated/475663
 res = client.embeddings.create(input="abc", model=embedding_model)
 print(res.data[0].embedding)
+
+# 使用新方法调用 OpenAI Embedding API
+def embedding_text(text, model="text-embedding-ada-002"):
+    res = client.embeddings.create(input=text, model=model)
+    return res.data[0].embedding
+
+embedding_datapath = "data/fine_food_reviews_with_embeddings_1k.csv"
+
+df_embedded = pd.read_csv(embedding_datapath, index_col=0)
+
+print(df_embedded["embedding"])
+
+import ast
+
+# 将字符串转换为向量
+df_embedded["embedding_vec"] = df_embedded["embedding"].apply(ast.literal_eval)
+
+print(len(df_embedded["embedding_vec"][0]))
+
+print(df_embedded.head(2))
