@@ -4,8 +4,8 @@
 
 [conda 安装](/docs/conda%20安装.md)
 
-
 ## 使用 LangServe 提供服务
+
 ```sh
 pip install "langserve[all]"
 ```
@@ -37,10 +37,10 @@ pip install "unstructured[local-inference]"
   GraphRAG技术：
     算法： 过层次聚类技术（如常用的 Leiden 算法）
 
-
 2. 总结：
-1. 在信息检索和内容生成，不再依赖传统的向量数据库和文档分割技术已不够充分，而应当充分利用 LLaMA 3 的强大功能，以提升索引、检索和内容生成的智能化程度。
-2. RAG 的基本流程涵盖几个关键步骤：文档分割、嵌入生成、向量存储、检索和内容生成
+  
+- 在信息检索和内容生成，不再依赖传统的向量数据库和文档分割技术已不够充分，而应当充分利用 LLaMA 3 的强大功能，以提升索引、检索和内容生成的智能化程度。
+- RAG 的基本流程涵盖几个关键步骤：文档分割、嵌入生成、向量存储、检索和内容生成
 
 ```py
 
@@ -92,8 +92,6 @@ query = "文档的主要发现是什么？"
 response = query_engine.query(query)
 print(response.response)
 ```
-
-
 
 ## 参考文档
 
