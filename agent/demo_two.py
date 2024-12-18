@@ -3,7 +3,7 @@ from langchain.agents import create_openai_functions_agent, AgentExecutor
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import Tool
-
+import os
 
 # 定义查询订单状态的函数
 def query_order_status(order_id):
@@ -38,12 +38,19 @@ prompt = hub.pull("hwchase17/openai-functions-agent")
 
 # 选择将驱动代理的LLM
 # model_name = "llama3"
-model_name="x/llama3.2-vision:11b"
+# model_name="x/llama3.2-vision:11b"
+# model_name="gpt-3.5-turbo-1106"
+# api_key = os.getenv("agicto_api_key") 
+# base_url="https://api.agicto.cn/v1"
+model_name="Qwen/Qwen2.5-7B-Instruct"
+api_key =  os.getenv("OPENAI_API_KEY")
+base_url="https://api.siliconflow.cn/v1/"
+
 # 选择将驱动代理的LLM
 llm = ChatOpenAI(
   model=model_name, 
-  api_key="ollama", 
-  base_url="http://localhost:11434/v1/",
+  api_key=api_key, 
+  base_url=base_url,
   )
   
 
@@ -51,7 +58,11 @@ llm = ChatOpenAI(
 agent = create_openai_functions_agent(llm, tools, prompt)
 
 # 通过传入代理和工具创建代理执行器
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+agent_executor = AgentExecutor(
+  agent=agent, 
+  tools=tools, 
+  verbose=True,
+)
 
 # 定义一些测试询问
 queries = [
