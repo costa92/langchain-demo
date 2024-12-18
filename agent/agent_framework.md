@@ -70,3 +70,4 @@ ReAct 启发 Agent 早期范式
 [Model-Based Reflex Agents in AI](https://www.geeksforgeeks.org/model-based-reflex-agents-in-ai/#modelbased-reflex-agents-in-ai)
 [Utility-Based Agents in AI](https://www.geeksforgeeks.org/utility-based-agents-in-ai/)
 [10 Real-World AI Agent Examples in 2024](https://chatbase.co/blog/ai-agent-examples)
+[LangChain之Agent代理（下）](https://juejin.cn/post/7383894869398356006)
