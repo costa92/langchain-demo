@@ -19,3 +19,4 @@ torchvision==0.20
 transformers==4.44.2
 sacremoses==0.1.1
 openai==1.58.1
+grandalf==0.8

@@ -20,3 +20,36 @@ chain = prompt | llm | output_parser
 
 res = chain.invoke({"topic": "冰淇淋"})
 print(res)
+#  pip install grandalf
+# chain.get_graph().print_ascii()
+
+#      +-------------+       
+#      | PromptInput |       
+#      +-------------+       
+#             *              
+#             *              
+#             *              
+#   +--------------------+   
+#   | ChatPromptTemplate |   
+#   +--------------------+   
+#             *              
+#             *              
+#             *              
+#       +------------+       
+#       | ChatOpenAI |       
+#       +------------+       
+#             *              
+#             *              
+#             *              
+#    +-----------------+     
+#    | StrOutputParser |     
+#    +-----------------+     
+#             *              
+#             *              
+#             *              
+# +-----------------------+  
+# | StrOutputParserOutput |  
+# +-----------------------+  
+
+chain.output_schema().schema()
+# chain.input_schema().model_json_schema()
