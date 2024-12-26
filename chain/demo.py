@@ -51,5 +51,7 @@ print(res)
 # | StrOutputParserOutput |  
 # +-----------------------+  
 
-chain.output_schema().schema()
-# chain.input_schema().model_json_schema()
+# chain.output_schema().schema()
+print(chain.get_output_jsonschema())
+print(chain.get_output_schema())
+print(chain.get_input_jsonschema()) 

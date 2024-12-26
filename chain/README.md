@@ -28,3 +28,4 @@ chain = setup\_and\_retrieval | prompt | model | output\_parser
 总结：LCEL就是LangChain提供用来组装Chain的一种简单表示方式。用这种方式组装链，可以自动获得诸如批量、流输出、并行、异步等一系列能力；而且链可以进一步通过LCEL组装成更复杂的链与Agent。
 
 [visualization](https://github.com/langchain-ai/langgraph/blob/main/docs/docs/how-tos/visualization.ipynb)
+[colab-demos](https://github.com/gox6/colab-demos/blob/main/practical-examples/langchain-jump-into-lcel-and-runnables.ipynb?source=post_page-----39eb3596cca1--------------------------------)
