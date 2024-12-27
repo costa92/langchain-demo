@@ -12,6 +12,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel,RunnableLambda,RunnablePassthrough
 from operator import itemgetter
 from langchain_core.output_parsers import StrOutputParser
+from langchain_ollama import OllamaEmbeddings
 
 wiki_on_llm_companies = ["https://en.wikipedia.org/wiki/Mistral_AI",
                          "https://en.wikipedia.org/wiki/Anthropic",
@@ -30,9 +31,20 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=200
 
 docs = text_splitter.split_documents(docs_orig)
 
+model_name = "qwen2.5:7b"
+embedd_model = "mxbai-embed-large:latest"
+api_key = "ollama"
+base_url = "http://localhost:11434/v1/"
 
-embedding_function = OpenAIEmbeddings(model="text-embedding-3-small")
 
+# embedding_function = OpenAIEmbeddings(
+#     api_key=api_key,
+#     model_name=embedd_model,
+#     base_url="http://localhost:11434/v1/"
+# )
+
+# OpenAIEmbeddings is deprecated, use OllamaEmbeddings instead
+embedding_function = OllamaEmbeddings(model=embedd_model)
 
 db = Chroma.from_documents(docs, embedding_function)
 
@@ -51,8 +63,6 @@ Question: {question}
 prompt = ChatPromptTemplate.from_template(template)
 
 model_name = "qwen2.5:7b"
-api_key = "ollama"
-base_url = "http://localhost:11434/v1/"
 
 llm = ChatOpenAI(
     model=model_name,
