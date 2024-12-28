@@ -103,6 +103,7 @@ print(response.response)
 [OceanBase AI 动手实战营](https://gitee.com/oceanbase-devhub/ai-workshop-2024)
 [使用Streamlit、LangChain、Neo4j和GPT-4o构建GraphRAG实战讲解及开源实现](https://www.53ai.com/news/RAG/2024072167318.html)
 [langchain-in-action](https://github.com/huangjia2019/langchain-in-action)
+[whisper](https://github.com/openai/whisper.git)
 ## 许可证
 
 本仓库的代码和文档遵循 [MIT License](LICENSE) 许可证。

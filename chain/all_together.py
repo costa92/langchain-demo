@@ -2,7 +2,9 @@
 # :zh 在讨论了LCEL原语并检查了孤立的示例之后，现在是时候在LCEL中构建一个带有检索器的简单链了。首先，我们将文档放入向量数据库：Gen AI空间中顶级公司的维基百科上的5个条目。
 
  # Getting example docs into vectordb
+import os
 
+os.environ["USER_AGENT"] ="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
