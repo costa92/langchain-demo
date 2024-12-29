@@ -3,7 +3,8 @@
 
  # Getting example docs into vectordb
 
-
+import os
+os.environ["USER_AGENT"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
@@ -13,6 +14,12 @@ from langchain_core.runnables import RunnableParallel,RunnableLambda,RunnablePas
 from operator import itemgetter
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import OllamaEmbeddings
+
+
+# os.environ["USER_AGENT"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+
+
+
 
 wiki_on_llm_companies = ["https://en.wikipedia.org/wiki/Mistral_AI",
                          "https://en.wikipedia.org/wiki/Anthropic",
@@ -35,6 +42,8 @@ model_name = "qwen2.5:7b"
 embedd_model = "mxbai-embed-large:latest"
 api_key = "ollama"
 base_url = "http://localhost:11434/v1/"
+
+
 
 
 # embedding_function = OpenAIEmbeddings(
