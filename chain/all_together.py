@@ -33,8 +33,9 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=200
 
 docs = text_splitter.split_documents(docs_orig)
 
+
 model_name = "qwen2.5:7b"
-embedd_model = "mxbai-embed-large:latest"
+embedd_model = "mxbai-embed-large"
 api_key = "ollama"
 base_url = "http://localhost:11434/v1/"
 
@@ -48,9 +49,34 @@ base_url = "http://localhost:11434/v1/"
 # )
 
 # OpenAIEmbeddings is deprecated, use OllamaEmbeddings instead
-embedding_function = OllamaEmbeddings(model=embedd_model)
+# embedding_function = OllamaEmbeddings(model=embedd_model)
+
+
+
+
+# ### =============== HuggingFaceEmbeddings start ==============================
+# # 设置模型参数，指定设备为 CPU
+from langchain_huggingface import HuggingFaceEmbeddings  # Updated import
+
+model_kwargs = {'device': 'cpu'}
+# 设置编码参数，禁用嵌入归一化
+encode_kwargs = {
+    'normalize_embeddings': False,
+    'clean_up_tokenization_spaces': False  # Explicitly set to avoid FutureWarning
+}
+model_name = "sentence-transformers/all-mpnet-base-v2"
+
+# 创建 HuggingFaceEmbeddings 实例，使用指定的模型和参数
+embedding_function = HuggingFaceEmbeddings(
+    model_name=model_name,
+    model_kwargs=model_kwargs,
+    encode_kwargs=encode_kwargs,
+)
+# ======================= HuggingFaceEmbeddings end ==========================
+
 
 db = Chroma.from_documents(docs, embedding_function)
+
 
 # Defining simple RAG with retriever in LCEL
 
