@@ -71,6 +71,7 @@ llm = ChatOpenAI(
     api_key=api_key,
     base_url=base_url, 
     temperature=0,
+    verbose=True
 )
 
 def format_docs(docs):
