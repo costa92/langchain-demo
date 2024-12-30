@@ -56,26 +56,47 @@ class Router(TypedDict):
 # llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
 from langchain_openai import ChatOpenAI
 import os
-model="deepseek-chat"
-api_key = os.getenv("deepseek_api_key")
-base_url = os.getenv("deepseek_api_url")
-llm = ChatOpenAI(model=model, api_key=api_key, base_url=base_url)
+# model_name="deepseek-chat"
+# api_key = os.getenv("deepseek_api_key")
+# base_url = os.getenv("deepseek_api_url")
+
+
+model_name = "qwen2.5:7b"
+api_key="ollama"
+base_url="http://localhost:11434/v1/"
+
+
+# model_name="Qwen/Qwen2.5-7B-Instruct"
+# import os
+# api_key =  os.getenv("OPENAI_API_KEY")
+# base_url="https://api.siliconflow.cn/v1/"
+
+
+llm = ChatOpenAI(
+    model=model_name,
+    api_key=api_key,
+    base_url=base_url,
+)
 
 # https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/agent_supervisor.ipynb
-# def supervisor_node(state: MessagesState) -> Command[Literal[*members, "__end__"]]:
-def supervisor_node(state: MessagesState) -> Command[Literal["researcher","coder", "__end__"]]:
+# INSERT_YOUR_REWRITE_HERE
+def supervisor_node(state: MessagesState) -> Command[Literal["researcher", "coder", "__end__"]]:
     messages = [
         {"role": "system", "content": system_prompt},
     ] + state["messages"]
-    response = llm.with_structured_output(Router).invoke(messages) 
-    goto = response["next"]
+    try:
+        response = llm.with_structured_output(Router).invoke(messages)
+        goto = "__end__"
+        if response!= None:
+            goto = response["next"]
+    except (KeyError, TypeError) as e:
+        print(f"Error processing response: {e}")
+        goto = "__end__"
+
     if goto == "FINISH":
-        goto = END
+        goto = "__end__"
 
     return Command(goto=goto)
-
-
-
 
 ### Construct Graph
 
