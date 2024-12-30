@@ -98,8 +98,6 @@ def research_node(state: MessagesState) -> Command[Literal["supervisor"]]:
 
 # NOTE: THIS PERFORMS ARBITRARY CODE EXECUTION, WHICH CAN BE UNSAFE WHEN NOT SANDBOXED
 code_agent = create_react_agent(llm, tools=[python_repl_tool])
-
-
 def code_node(state: MessagesState) -> Command[Literal["supervisor"]]:
     result = code_agent.invoke(state)
     return Command(
@@ -132,6 +130,8 @@ image = PILImage.open(io.BytesIO(image_data))
 image.save("output.png")
 
 
+
+#  循环处理
 for s in graph.stream(
     {"messages": [("user", "What's the square root of 42?")]}, subgraphs=True
 ):
