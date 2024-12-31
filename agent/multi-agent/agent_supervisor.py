@@ -61,15 +61,14 @@ import os
 # base_url = os.getenv("deepseek_api_url")
 
 
-model_name = "qwen2.5:7b"
-api_key="ollama"
-base_url="http://localhost:11434/v1/"
+# model_name = "qwen2.5:7b"
+# api_key="ollama"
+# base_url="http://localhost:11434/v1/"
 
 
-# model_name="Qwen/Qwen2.5-7B-Instruct"
-# import os
-# api_key =  os.getenv("OPENAI_API_KEY")
-# base_url="https://api.siliconflow.cn/v1/"
+model_name="Qwen/Qwen2.5-7B-Instruct"
+api_key =  os.getenv("OPENAI_API_KEY")
+base_url="https://api.siliconflow.cn/v1/"
 
 
 llm = ChatOpenAI(

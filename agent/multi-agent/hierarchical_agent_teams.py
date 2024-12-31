@@ -138,8 +138,15 @@ def make_supervisor_node(llm: BaseChatModel, members:List[str]) -> str:
        messages = [
             {"role": "system", "content": system_prompt},
         ] + state["messages"]
-       response = llm.with_structured_output(Router).invoke(messages)
-       goto = response["next"]
+       try:
+         response = llm.with_structured_output(Router).invoke(messages)
+         goto = "FINISH"
+         if response!= None:
+             goto = response["next"]
+       except (KeyError, TypeError) as e:
+          print(f"Error processing response: {e}")
+          goto = "FINISH"
+
        if goto == "FINISH":
           goto = END
        return Command(goto=goto)
