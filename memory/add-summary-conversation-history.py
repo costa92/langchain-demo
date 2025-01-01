@@ -6,7 +6,7 @@ from langgraph.graph import MessagesState,StateGraph,START
 from typing import Literal
 from langchain_core.messages import HumanMessage
 
-
+# https://github.com/langchain-ai/langgraph/tree/main/docs/docs/how-tos/memory
 memory = MemorySaver()
 
 # We will add a `summary` attribute (in addition to `messages` key,
@@ -126,3 +126,13 @@ input_message = HumanMessage(content="i like the celtics!")
 input_message.pretty_print()
 for event in app.stream({"messages": [input_message]}, config, stream_mode="updates"):
     print_update(event)
+
+
+# Manually deleting messages
+messages = app.get_state(config).values["messages"]
+print(messages)
+
+app.update_state(config, {"messages": RemoveMessage(id=messages[0].id)})
+messages = app.get_state(config).values["messages"]
+
+print(messages)
