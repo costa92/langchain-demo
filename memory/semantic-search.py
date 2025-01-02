@@ -65,7 +65,6 @@ model = ChatOpenAI(
     base_url=base_url,
 )
 
-
 def chat(state,*,store: BaseStore):
     # Search based on user's last message
     items = store.search(
