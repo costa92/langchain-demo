@@ -22,3 +22,4 @@ openai==1.58.1
 grandalf==0.8
 langchain-chroma==0.1.4
 langchain-experimental==0.3.4
+duckduckgo-search==7.1.1 
