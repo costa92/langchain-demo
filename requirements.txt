@@ -26,3 +26,4 @@ duckduckgo-search==7.1.1
 docx2txt==0.8
 qdrant-client==1.12.2
 llama-cpp-python==0.3.5
+playwright==1.49.1

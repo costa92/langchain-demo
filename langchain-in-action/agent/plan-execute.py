@@ -43,8 +43,10 @@ model = ChatOpenAI(
     base_url=base_url,
     model_name=model_name,
 )
+# 初始化计划代理和执行代理
 planner = load_chat_planner(model)
 executor = load_agent_executor(model, tools, verbose=True)
+# 初始化 Plan and Execute 代理
 agent = PlanAndExecute(planner=planner, executor=executor, verbose=True)
 
 res = agent.invoke("在纽约，100美元能买几束玫瑰?")
