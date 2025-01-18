@@ -75,7 +75,7 @@ result = index.query(query, llm=llm)
 
 
 
-# # 替换成你所需要的工具
+# 替换成你所需要的工具
 # from langchain.text_splitter import CharacterTextSplitter
 # text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 # from langchain.vectorstores import Chroma
@@ -86,9 +86,3 @@ result = index.query(query, llm=llm)
 #     embedding=OpenAIEmbeddings(),
 #     text_splitter=CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 # )
-
-# index = index_creator.from_loaders([loader])
-
-# query = "玫瑰花的花语是什么？"
-# result = index.query(query)
-# print(result) # 打印查询结果
