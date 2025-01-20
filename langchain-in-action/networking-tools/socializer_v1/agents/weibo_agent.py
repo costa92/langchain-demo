@@ -11,32 +11,30 @@ def lookup_V(flower_type: str):
     model_name = "deepseek-chat"
     API_KEY = os.getenv("deepseek_api_key")
     base_url = "https://api.deepseek.com/beta"
-    llm = ChatOpenAI(api_key=API_KEY, base_url=base_url, model=model_name, temperature=0.2)
+    llm = ChatOpenAI(api_key=API_KEY, base_url=base_url, model=model_name, temperature=0.8)
     
     # 寻找UID的模板
-    # template = """Given the flower type '{flower}', find the related 微博 UID.
-    #               {tools}\n\n"
-    #               Your answer should contain only the UID.
-    #               The URL always starts with https://weibo.com/u/
-    #               For example, if https://weibo.com/u/1669879400 is the 微博, then 1669879400 is the UID.
-    #               Question: Given the flower type '{flower}', find the related 微博 UID.
-    #               Thought: I need to use the tools available to find the UID.
-    #               Action: {tool_names}
-    #               Action Input: The input to the action
-    #               Observation: The result of the action
-    #               Thought: I now know the final answer.
-    #               Action: Final Answer: {agent_scratchpad}"""
-    template = """Given the flower type '{flower}', find the related 微博 UID.
-    {tools}
+    template = """
+        Given the flower type '{flower}', find the related 微博 UID.
+        {tools}
+        Your answer should contain only the UID.
+        The URL always starts with https://weibo.com/u/
+        For example, if https://weibo.com/u/1669879400 is the 微博, then 1669879400 is the UID.
+        Question: Given the flower type '{flower}', find the related 微博 UID.
+        Thought: I need to use the tools available to find the UID.
+        Action: the action to take, should be one of [{tool_names}]
+        Action Input: the input to the action
+        Observation: The result of the action
+        ... (this Thought/Action/Action Input/Observation can repeat N times)
+        Thought: I now know the final answer
+        Final Answer: the final answer to the original input question
+        
+        Begin!
 
-    Question: Given the flower type '{flower}', find the related 微博 UID.
-    Thought: I need to use the tools available to find the UID.
-    Action: {tool_names}
-    Action Input: {flower}
-    Observation: {agent_scratchpad}
-    Thought: I now know the final answer.
-    Action: Final Answer
-    Action Input: {agent_scratchpad}"""
+        Question: {flower}
+        Thought:{agent_scratchpad}
+    """
+
     # 完整的提示模板
     prompt_template = PromptTemplate(
         input_variables=["flower", "agent_scratchpad", "tool_names"],  # 移除 tools，因为模板中未使用
