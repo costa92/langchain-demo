@@ -48,4 +48,3 @@ agent_executor = AgentExecutor(agent=react_agent, tools=tools, verbose=True)
 
 # 跑起来
 res=agent_executor.invoke({"input":"目前市场上玫瑰花的平均价格是多少？如果我在此基础上加价15%卖出，应该如何定价？"})
-print(res)
