@@ -98,3 +98,7 @@ graph TD
 Generated Joke: Why did the ice cream go to school? It wanted to get a little "sundae" education!
 Translated Joke: 为什么奥巴马去图书馆？他想提高自己的"知识"水平！
 ```
+
+## 文档
+
+- [expressiAdvantages of LCEL](https://python.langchain.com/v0.1/docs/expression_language/why/)
